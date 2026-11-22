@@ -1,0 +1,4 @@
+# Billets et reçus sensibles
+*.pdf
+Archive_*.html
+*.log

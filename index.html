@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Navidad en Baillargues | Papá y Mamá</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <header class="navbar no-print">
+        <div class="container nav-content">
+            <div class="brand-group">
+                <span class="brand-badge">🎄 2026</span>
+                <span class="brand" data-i18n="brand">Nuestra Navidad en Baillargues</span>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="#vuelos" class="nav-link" data-i18n="navFlights">✈ Vuelos</a>
+                <a href="#alojamiento" class="nav-link" data-i18n="navStay">🏡 Alojamiento</a>
+                <a href="#mercados" class="nav-link" data-i18n="navMarkets">🎄 Mercados</a>
+                <a href="#itinerario" class="nav-link" data-i18n="navItinerary">🗓 Programa</a>
+                <a href="#contactos" class="nav-link" data-i18n="navContacts">📞 Contactos</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button id="btn-print" class="btn-outline" onclick="window.print()" title="Imprimir o guardar en PDF">
+                    <span>🖨️</span> <span class="hide-mobile" data-i18n="print">Imprimir</span>
+                </button>
+                <button id="lang-toggle" class="lang-switch" aria-label="Cambiar idioma / Changer de langue">
+                    <span class="lang-active" id="lang-es">ES</span> / <span id="lang-fr">FR</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <div class="hero-pill">
+                    <span class="hero-dot"></span>
+                    <span data-i18n="dates">22 — 27 de Diciembre de 2026</span>
+                </div>
+                <h1 data-i18n="heroTitle">Nuestra Navidad en Baillargues</h1>
+                <p class="hero-subtitle" data-i18n="heroSub">
+                    Un viaje diseñado con todo nuestro amor para Papá y Mamá. De Málaga a Baillargues, todo está organizado y reservado para disfrutar de unos días mágicos, cómodos y llenos de cariño en familia.
+                </p>
+                
+                <!-- Quick stats -->
+                <div class="hero-badges">
+                    <div class="h-badge">
+                        <span class="hb-icon">✈️</span>
+                        <div>
+                            <strong data-i18n="hbFlights">Vuelos Directos</strong>
+                            <small data-i18n="hbSeats">Asientos + Prioridad</small>
+                        </div>
+                    </div>
+                    <div class="h-badge">
+                        <span class="hb-icon">🏡</span>
+                        <div>
+                            <strong data-i18n="hbStay">Planta Baja 100%</strong>
+                            <small data-i18n="hbDist">A 900m de casa</small>
+                        </div>
+                    </div>
+                    <div class="h-badge">
+                        <span class="hb-icon">🎅</span>
+                        <div>
+                            <strong data-i18n="hbMarkets">Mercadillos</strong>
+                            <small data-i18n="hbVisits">LGM & Montpellier</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Countdown -->
+                <div class="countdown-wrapper no-print">
+                    <div class="countdown-label" data-i18n="cdLabel">Cuenta atrás para nuestro abrazo:</div>
+                    <div class="countdown-box" id="countdown">
+                        <div class="cd-item"><span id="cd-days">00</span><small data-i18n="days">Días</small></div>
+                        <div class="cd-sep">:</div>
+                        <div class="cd-item"><span id="cd-hours">00</span><small data-i18n="hours">Horas</small></div>
+                        <div class="cd-sep">:</div>
+                        <div class="cd-item"><span id="cd-mins">00</span><small data-i18n="mins">Minutos</small></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="tilt-frame" id="hero-tilt" title="Pulsa para ver en grande">
+                    <img src="assets/familia.jpg" alt="Familia reunida con amor" class="hero-img">
+                    <div class="frame-caption no-print">
+                        <span data-i18n="photoCaption">✨ Ver recuerdo familiar</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container main-sections">
+        
+        <!-- SECTION 1: VUELOS RYANAIR -->
+        <section class="section-block" id="vuelos">
+            <div class="section-header">
+                <span class="kicker" data-i18n="transKicker">Transporte Aéreo Confirmado</span>
+                <h2 data-i18n="vuelosTitle">Vuelos Ryanair Directos</h2>
+                <p class="section-lead" data-i18n="vuelosLead">
+                    Reserva confirmada con embarque prioritario, 2 piezas de equipaje de cabina por persona y asientos contiguos reservados.
+                </p>
+            </div>
+
+            <!-- Booking Reference Bar -->
+            <div class="pnr-bar">
+                <div class="pnr-item">
+                    <span class="pnr-label" data-i18n="carrierLabel">Compañía:</span>
+                    <strong>Ryanair</strong>
+                </div>
+                <div class="pnr-item">
+                    <span class="pnr-label" data-i18n="bookingRefLabel">Localizador de Reserva:</span>
+                    <strong class="pnr-code">YBER3U</strong>
+                </div>
+                <div class="pnr-item">
+                    <span class="pnr-label" data-i18n="paxLabel">Pasajeros:</span>
+                    <span>Juan José Gómez Zorrilla & Ángeles Soria Pineda</span>
+                </div>
+                <div class="pnr-badge">
+                    <span class="tag tag-gold" data-i18n="priorityTag">★ Embarque Prioritario + 2 Bultos de Cabina</span>
+                </div>
+            </div>
+
+            <div class="tickets-grid">
+                <!-- Vuelo Aller -->
+                <div class="flight-card">
+                    <div class="fc-header">
+                        <div class="fc-badge fc-outbound" data-i18n="flightOutBadge">IDA • VUELO FR6622</div>
+                        <span class="fc-date">Martes 22 de Diciembre de 2026</span>
+                    </div>
+
+                    <div class="fc-body">
+                        <div class="fc-endpoint">
+                            <span class="fc-iata">AGP</span>
+                            <span class="fc-city">Málaga</span>
+                            <span class="fc-time">10:05</span>
+                            <small class="fc-terminal" data-i18n="depLabel">Salida puntual</small>
+                        </div>
+
+                        <div class="fc-flightpath">
+                            <span class="fc-duration">2h 05 min</span>
+                            <div class="fc-line">
+                                <span class="fc-plane">✈</span>
+                            </div>
+                            <span class="fc-direct" data-i18n="directFlight">Vuelo Directo</span>
+                        </div>
+
+                        <div class="fc-endpoint">
+                            <span class="fc-iata">MRS</span>
+                            <span class="fc-city">Marsella</span>
+                            <span class="fc-time">12:10</span>
+                            <small class="fc-terminal" data-i18n="arrLabel">Llegada terminal</small>
+                        </div>
+                    </div>
+
+                    <div class="fc-passengers">
+                        <div class="pax-card">
+                            <span class="pax-name">👤 Juan José Gómez Zorrilla</span>
+                            <div class="pax-meta">
+                                <span class="seat-badge">Asiento <strong>15F</strong></span>
+                                <span class="pax-luggage">🧳 Prioridad + 2 maletas cabina</span>
+                            </div>
+                        </div>
+                        <div class="pax-card">
+                            <span class="pax-name">👤 Ángeles Soria Pineda</span>
+                            <div class="pax-meta">
+                                <span class="seat-badge">Asiento <strong>15E</strong></span>
+                                <span class="pax-luggage">🧳 Prioridad + 2 maletas cabina</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fc-footer">
+                        <span class="fc-note" data-i18n="outConnectionNote">
+                            ℹ️ Al aterrizar en Marsella a las 12:10, recogida de maletas y salida cómoda hacia la dársena de autobuses para la conexión a Montpellier.
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Vuelo Retour -->
+                <div class="flight-card">
+                    <div class="fc-header">
+                        <div class="fc-badge fc-inbound" data-i18n="flightBackBadge">VUELTA • VUELO FR6623</div>
+                        <span class="fc-date">Domingo 27 de Diciembre de 2026</span>
+                    </div>
+
+                    <div class="fc-body">
+                        <div class="fc-endpoint">
+                            <span class="fc-iata">MRS</span>
+                            <span class="fc-city">Marsella</span>
+                            <span class="fc-time">14:45</span>
+                            <small class="fc-terminal" data-i18n="depLabel">Salida puntual</small>
+                        </div>
+
+                        <div class="fc-flightpath">
+                            <span class="fc-duration">2h 05 min</span>
+                            <div class="fc-line">
+                                <span class="fc-plane">✈</span>
+                            </div>
+                            <span class="fc-direct" data-i18n="directFlight">Vuelo Directo</span>
+                        </div>
+
+                        <div class="fc-endpoint">
+                            <span class="fc-iata">AGP</span>
+                            <span class="fc-city">Málaga</span>
+                            <span class="fc-time">16:50</span>
+                            <small class="fc-terminal" data-i18n="arrHomeLabel">Llegada a casa</small>
+                        </div>
+                    </div>
+
+                    <div class="fc-passengers">
+                        <div class="pax-card">
+                            <span class="pax-name">👤 Juan José Gómez Zorrilla</span>
+                            <div class="pax-meta">
+                                <span class="seat-badge">Asiento <strong>23F</strong></span>
+                                <span class="pax-luggage">🧳 Prioridad + 2 maletas cabina</span>
+                            </div>
+                        </div>
+                        <div class="pax-card">
+                            <span class="pax-name">👤 Ángeles Soria Pineda</span>
+                            <div class="pax-meta">
+                                <span class="seat-badge">Asiento <strong>23E</strong></span>
+                                <span class="pax-luggage">🧳 Prioridad + 2 maletas cabina</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fc-footer">
+                        <span class="fc-note" data-i18n="inConnectionNote">
+                            ℹ️ Llegada al aeropuerto de Marsella en bus a las 12:05 (2h40 antes del despegue), tiempo perfecto para facturar y comer con tranquilidad.
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transfer Cards (Bus + Voiture Juan José) -->
+            <div class="transfers-container">
+                <h3 class="transfers-title" data-i18n="transfersHeading">🚌 Conexiones de Autobús & Recogida Personalizada</h3>
+                
+                <div class="transfers-grid">
+                    <!-- Transfer Aller -->
+                    <div class="transfer-card">
+                        <div class="tc-header">
+                            <span class="tc-badge" data-i18n="tcOutBadge">CONEXIÓN IDA (22 DIC)</span>
+                            <span class="tc-company">BlaBlaCar Bus • Línea 50486</span>
+                        </div>
+                        <div class="tc-route">
+                            <div class="tc-stop">
+                                <strong>13:25</strong>
+                                <span>Aéroport Marseille Provence (MRS)</span>
+                                <small>Gare routière (entre T1 y T2)</small>
+                            </div>
+                            <div class="tc-duration">➔ 1h45 directo ➔</div>
+                            <div class="tc-stop">
+                                <strong>15:10</strong>
+                                <span>Montpellier - Gare Sabines</span>
+                                <small>86 Rue de la Madeleine</small>
+                            </div>
+                        </div>
+                        <div class="tc-pax-info">
+                            <span>Reserva: <strong>MDDVAL</strong></span>
+                            <span>Asientos: <strong>12E & 12D</strong></span>
+                        </div>
+                        <div class="tc-pickup">
+                            <span class="tc-icon">🚗</span>
+                            <div>
+                                <strong data-i18n="pickupTitle">Recogida VIP por Juan José (hijo):</strong>
+                                <p data-i18n="pickupDesc">Os espero en coche a la bajada del autobús en Montpellier. Maletas al maletero, nos vamos a casa a merendar juntos con Laura y las niñas, y luego os acompaño a la Cabane.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Transfer Retour -->
+                    <div class="transfer-card">
+                        <div class="tc-header">
+                            <span class="tc-badge tc-badge-red" data-i18n="tcInBadge">CONEXIÓN VUELTA (27 DIC)</span>
+                            <span class="tc-company">FlixBus • Línea S1738</span>
+                        </div>
+                        <div class="tc-route">
+                            <div class="tc-stop">
+                                <strong>10:05</strong>
+                                <span>Montpellier - Gare Sud de France</span>
+                                <small>1521 Rue de la Fontaine de la Banquière</small>
+                            </div>
+                            <div class="tc-duration">➔ 2h00 directo ➔</div>
+                            <div class="tc-stop">
+                                <strong>12:05</strong>
+                                <span>Aéroport Marseille Provence (MRS)</span>
+                                <small>Gare routière terminal</small>
+                            </div>
+                        </div>
+                        <div class="tc-pax-info">
+                            <span>Reserva: <strong>#3411155170</strong></span>
+                            <span>Conexión: <strong>Vuelo FR6623 (14:45)</strong></span>
+                        </div>
+                        <div class="tc-pickup">
+                            <span class="tc-icon">🚗</span>
+                            <div>
+                                <strong data-i18n="dropoffTitle">Acompañamiento por Juan José:</strong>
+                                <p data-i18n="dropoffDesc">Salimos de casa a las 09:30 en coche. Os dejo directamente en la parada del autobús con vuestro equipaje listo para subir al car.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: ALOJAMIENTO CABANE SOUIRIÉ -->
+        <section class="section-block" id="alojamiento">
+            <div class="section-header">
+                <span class="kicker" data-i18n="accKicker">Vuestro Refugio Privado</span>
+                <h2 data-i18n="accTitle">La Cabane Souirié</h2>
+                <p class="section-lead" data-i18n="accSublead">
+                    Un espacio independiente, cálido y silencioso a tan solo 900 metros de nuestra casa.
+                </p>
+            </div>
+
+            <div class="luxury-card acc-card-enhanced">
+                <!-- Gallery Showcase -->
+                <div class="acc-gallery">
+                    <div class="acc-main-photo" id="acc-photo-zoom">
+                        <img src="assets/cabane.jpg" alt="Cabane Souirié Baillargues - Habitación y terraza" id="acc-img-main">
+                        <span class="photo-tag" data-i18n="officialPhoto">📸 Foto Oficial del Alojamiento</span>
+                    </div>
+                    <div class="acc-thumbs">
+                        <img src="assets/cabane.jpg" alt="Vista 1" class="acc-thumb active" onclick="switchAccPhoto('assets/cabane.jpg', this)">
+                        <img src="assets/cabane-2.jpg" alt="Vista 2" class="acc-thumb" onclick="switchAccPhoto('assets/cabane-2.jpg', this)">
+                    </div>
+                </div>
+
+                <!-- Details & Comfort -->
+                <div class="acc-info">
+                    <div class="acc-tags">
+                        <span class="tag tag-green">✓ 100% Planta Baja (Sin escaleras)</span>
+                        <span class="tag tag-gold">👑 Cama King 160 cm de alta gama</span>
+                        <span class="tag tag-blue">❄️ Climatización reversible</span>
+                        <span class="tag tag-purple">🌿 Jardín & Terraza privados</span>
+                    </div>
+
+                    <h3 class="acc-name">Cabane Souirié Cosy & Climatisée</h3>
+                    <p class="acc-address">📍 <strong>6 Rue de la Croix d'Avignon, 34670 Baillargues</strong> (Francia)</p>
+                    <p class="acc-distance" data-i18n="accDistance">🚗 A 900 m de nuestra casa (2 minutos en coche o 10 min a pie).</p>
+                    
+                    <p class="acc-description" data-i18n="accFullDesc">
+                        Elegido cuidadosamente para vuestro descanso: suite independiente de 21 m² totalmente equipada con baño privado moderno, cocina completa, televisión, conexión Wi-Fi de alta velocidad y parking privado cerrado. Todo de una sola planta para evitar cualquier esfuerzo.
+                    </p>
+
+                    <!-- Key details box -->
+                    <div class="acc-credentials-box">
+                        <div class="cred-title-row">
+                            <span class="cred-badge">Booking.com</span>
+                            <span data-i18n="bookingConfirmed">Estancia 100% Confirmada & Pagada</span>
+                        </div>
+                        <div class="cred-grid">
+                            <div class="cg-item">
+                                <small data-i18n="bookingNumLabel">Nº Reserva Booking</small>
+                                <strong>#6679397714</strong>
+                            </div>
+                            <div class="cg-item">
+                                <small data-i18n="pinCodeLabel">Código PIN Llaves</small>
+                                <strong class="pin-code">5962</strong>
+                            </div>
+                            <div class="cg-item">
+                                <small data-i18n="checkinLabel">Check-in</small>
+                                <span>22 Dic desde 18:00</span>
+                            </div>
+                            <div class="cg-item">
+                                <small data-i18n="checkoutLabel">Check-out</small>
+                                <span>27 Dic hasta 10:00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="acc-actions-row no-print">
+                        <button class="btn-primary" id="copy-address" data-i18n="btnCopy">
+                            <span>📋</span> Copiar Dirección
+                        </button>
+                        <a href="https://maps.google.com/?q=6+Rue+de+la+Croix+d'Avignon,+34670+Baillargues" target="_blank" rel="noopener" class="btn-outline" data-i18n="btnMap">
+                            <span>🗺️</span> Ver en Google Maps
+                        </a>
+                        <a href="https://www.booking.com/Share-np5s99" target="_blank" rel="noopener" class="btn-outline" data-i18n="btnBooking">
+                            <span>🏨</span> Ficha Booking
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: MERCADOS DE NAVIDAD (NUEVA SECCIÓN ENRIQUECIDA) -->
+        <section class="section-block" id="mercados">
+            <div class="section-header">
+                <span class="kicker" data-i18n="marketsKicker">Paseos Mágicos en Familia</span>
+                <h2 data-i18n="marketsTitle">Mercados de Navidad del Sur</h2>
+                <p class="section-lead" data-i18n="marketsLead">
+                    Dos excursiones diseñadas para disfrutar de las luces, los sabores navideños y el ambiente festivo sin cansancio.
+                </p>
+            </div>
+
+            <div class="markets-grid">
+                <!-- Mercado 1: La Grande-Motte -->
+                <article class="market-card">
+                    <div class="mc-image-box">
+                        <img src="assets/marche-noel-lgm.jpg" alt="La Grande Motte Forêt Magique et Port" class="mc-img">
+                        <span class="mc-tag">🌊 Miércoles 23 Diciembre</span>
+                    </div>
+
+                    <div class="mc-content">
+                        <div class="mc-meta">
+                            <span class="mc-location">📍 La Grande-Motte • Place de la Mairie & Port</span>
+                            <span class="mc-time">⏰ 11:00 — 21:00</span>
+                        </div>
+
+                        <h3 class="mc-title" data-i18n="lgmTitle">La Forêt Magique de La Grande-Motte</h3>
+                        
+                        <p class="mc-desc" data-i18n="lgmDesc">
+                            Un mercado de Navidad único a orillas del mar Mediterráneo. Un bosque encantado de abetos decorados con luces doradas, carrusel tradicional y las famosas pirámides de Jean Balladur iluminadas.
+                        </p>
+
+                        <div class="mc-highlights">
+                            <h4 data-i18n="highlightsTitle">Lo que disfrutaremos juntos:</h4>
+                            <ul>
+                                <li data-i18n="lgmItem1">🍬 <strong>Village des Délices:</strong> Crêpes, churros, gofres artesanos y chocolate caliente.</li>
+                                <li data-i18n="lgmItem2">❄️ <strong>Nieve mágica:</strong> Caída de nieve artificial a las 17:00 en un ambiente de cuento.</li>
+                                <li data-i18n="lgmItem3">⛵ <strong>Paseo llano marítimo:</strong> Totalmente accesible, llano y sin desniveles para pasear con tranquilidad frente a los veleros.</li>
+                            </ul>
+                        </div>
+
+                        <div class="mc-footer">
+                            <span class="mc-badge-soft" data-i18n="lgmDistance">🚗 A solo 18 minutos en coche desde casa</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Mercado 2: Montpellier Les Hivernales -->
+                <article class="market-card">
+                    <div class="mc-image-box">
+                        <img src="assets/marche-noel-montpellier.jpg" alt="Montpellier Promenade Royale du Peyrou" class="mc-img">
+                        <span class="mc-tag mc-tag-gold">🏛️ Sábado 26 Diciembre</span>
+                    </div>
+
+                    <div class="mc-content">
+                        <div class="mc-meta">
+                            <span class="mc-location">📍 Montpellier • Promenade Royale du Peyrou</span>
+                            <span class="mc-time">⏰ 10:30 — 22:30 (Nocturna)</span>
+                        </div>
+
+                        <h3 class="mc-title" data-i18n="mtpTitle">Les Hivernales de Montpellier</h3>
+                        
+                        <p class="mc-desc" data-i18n="mtpDesc">
+                            El gran mercado de Navidad tradicional de Montpellier en el majestuoso marco del Peyrou, con el Arco del Triunfo del siglo XVII y el Acueducto de los Arcos iluminados.
+                        </p>
+
+                        <div class="mc-highlights">
+                            <h4 data-i18n="highlightsTitle">Lo que disfrutaremos juntos:</h4>
+                            <ul>
+                                <li data-i18n="mtpItem1">🪵 <strong>Más de 90 chalets de madera:</strong> Artesanos locales, figuras de belén provenzal (santons) y adornos.</li>
+                                <li data-i18n="mtpItem2">🧀 <strong>Gastronomía festiva:</strong> Degustación de aligot caliente, castañas asadas, ostras de Bouzigues y vino caliente con canela.</li>
+                                <li data-i18n="mtpItem3">🎡 <strong>Ambiente señorial:</strong> Paseo majestuoso con amplias avenidas pavimentadas y bancos para descansar a placer.</li>
+                            </ul>
+                        </div>
+
+                        <div class="mc-footer">
+                            <span class="mc-badge-soft" data-i18n="mtpDistance">🚗 A 15 minutos en coche desde Baillargues</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- SECTION 4: PROGRAMA DÍA A DÍA -->
+        <section class="section-block" id="itinerario">
+            <div class="section-header">
+                <span class="kicker" data-i18n="itinKicker">Día a Día</span>
+                <h2 data-i18n="itinTitle">Programa de las Fiestas</h2>
+                <p class="section-lead" data-i18n="itinLead">
+                    Todo planeado a un ritmo sereno, sin prisas y priorizando el descanso y la alegría familiar.
+                </p>
+            </div>
+
+            <div class="timeline-filters no-print">
+                <button class="filter-btn active" data-filter="all" data-i18n="fAll">Todo el viaje</button>
+                <button class="filter-btn" data-filter="transit" data-i18n="fTransit">Transportes</button>
+                <button class="filter-btn" data-filter="festive" data-i18n="fFestive">Navidad & Mercados</button>
+            </div>
+
+            <div class="timeline" id="timeline-container">
+                <!-- Injecté dynamiquement par app.js -->
+            </div>
+        </section>
+
+        <!-- SECTION 5: CONTACTOS Y ASISTENCIA -->
+        <section class="section-block" id="contactos">
+            <div class="section-header">
+                <span class="kicker" data-i18n="contactKicker">Siempre a vuestro lado</span>
+                <h2 data-i18n="contactTitle">Teléfonos de Contacto & Asistencia</h2>
+                <p class="section-lead" data-i18n="contactLead">
+                    Cualquier detalle o duda, con un solo toque podéis llamarme directamente.
+                </p>
+            </div>
+
+            <div class="contacts-grid">
+                <div class="contact-card">
+                    <div class="contact-avatar">👨‍👩‍👧‍👦</div>
+                    <h3>Juan José (Hijo)</h3>
+                    <p data-i18n="contactJuanSub">Organizador & chofer familiar</p>
+                    <a href="tel:+33649329437" class="btn-call">📞 +33 6 49 32 94 37</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-avatar">🏡</div>
+                    <h3>Cabane Souirié</h3>
+                    <p data-i18n="contactHostSub">Anfitrión & Acceso Llaves</p>
+                    <a href="tel:+33664231751" class="btn-call btn-call-alt">📞 +33 6 64 23 17 51</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-avatar">🚨</div>
+                    <h3 data-i18n="contactEmergTitle">Emergencias (Francia / UE)</h3>
+                    <p data-i18n="contactEmergSub">Atención médica & Policía (en español)</p>
+                    <a href="tel:112" class="btn-call btn-call-emerg">📞 112 (Emergencias)</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p class="footer-heart">❤️</p>
+            <p class="footer-title" data-i18n="footerText">Nuestra Navidad en Baillargues • Diciembre 2026</p>
+            <p class="footer-sub" data-i18n="footerSub">Diseñado con todo mi cariño para Papá y Mamá • Juan José</p>
+        </div>
+    </footer>
+
+    <!-- Modal Photo Souvenir -->
+    <div class="modal-light no-print" id="photo-modal" aria-hidden="true">
+        <div class="modal-backdrop" id="modal-close-bg"></div>
+        <div class="modal-card">
+            <button class="modal-close" id="modal-close-btn" aria-label="Cerrar">✕</button>
+            <img src="assets/familia.jpg" alt="Recuerdo Familiar">
+            <p class="modal-caption" data-i18n="modalText">El calor de estar juntos. ¡Qué ganas inmensas de recibiros y abrazaros!</p>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast no-print"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
