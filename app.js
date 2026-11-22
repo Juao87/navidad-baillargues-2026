@@ -16,6 +16,8 @@ function switchAccPhoto(src, el) {
 const App = (() => {
     let currentLang = 'es';
     let currentFilter = 'all';
+    let snowActive = true;
+    let snowAnimId = null;
 
     // 1. Diccionario Bilingüe Integral (Español / Francés)
     const i18n = {
@@ -27,6 +29,7 @@ const App = (() => {
             navItinerary: "🗓 Programa",
             navContacts: "📞 Contactos",
             print: "Imprimir",
+            snowToggle: "Nieve: ON",
             dates: "22 — 27 de Diciembre de 2026",
             heroTitle: "Nuestra Navidad en Baillargues",
             heroSub: "Un viaje diseñado con todo nuestro amor para Papá y Mamá. De Málaga a Baillargues, todo está organizado y reservado para disfrutar de unos días mágicos, cómodos y llenos de cariño en familia.",
@@ -132,6 +135,7 @@ const App = (() => {
             navItinerary: "🗓 Programme",
             navContacts: "📞 Contacts",
             print: "Imprimer",
+            snowToggle: "Neige : ON",
             dates: "22 — 27 Décembre 2026",
             heroTitle: "Notre Noël à Baillargues",
             heroSub: "Un voyage préparé avec tout notre amour pour Papa et Maman. De Malaga à Baillargues, tout est réservé et organisé pour vivre un séjour magique, confortable et chaleureux en famille.",
@@ -321,6 +325,14 @@ const App = (() => {
         if (esBtn) esBtn.classList.toggle('lang-active', lang === 'es');
         if (frBtn) frBtn.classList.toggle('lang-active', lang === 'fr');
 
+        // Mettre à jour le texte du toggle neige
+        const snowToggleLabel = document.querySelector('[data-i18n="snowToggle"]');
+        if (snowToggleLabel) {
+            snowToggleLabel.textContent = snowActive
+                ? (lang === 'es' ? 'Nieve: ON' : 'Neige : ON')
+                : (lang === 'es' ? 'Nieve: OFF' : 'Neige : OFF');
+        }
+
         renderTimeline();
     }
 
@@ -413,13 +425,102 @@ const App = (() => {
         });
     }
 
-    // 9. Initialisation Globale
+    // 9. Effet Chutes de Neige Féerique (Canvas Snowfall)
+    function initSnow() {
+        const canvas = document.getElementById('snow-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        // 35 flocons doux et légers (optimisé performance et lisibilité)
+        const numFlakes = Math.min(45, Math.floor(window.innerWidth / 28));
+        const flakes = [];
+
+        for (let i = 0; i < numFlakes; i++) {
+            flakes.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius: Math.random() * 2.2 + 1.2,
+                density: Math.random() * numFlakes,
+                speed: Math.random() * 0.7 + 0.35,
+                opacity: Math.random() * 0.55 + 0.3,
+                drift: Math.random() * 0.5 - 0.25
+            });
+        }
+
+        let angle = 0;
+
+        function render() {
+            if (!snowActive) {
+                ctx.clearRect(0, 0, width, height);
+                return;
+            }
+
+            ctx.clearRect(0, 0, width, height);
+            angle += 0.01;
+
+            for (let i = 0; i < flakes.length; i++) {
+                const f = flakes[i];
+                ctx.beginPath();
+                ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2, false);
+                ctx.fillStyle = `rgba(255, 255, 255, ${f.opacity})`;
+                ctx.shadowColor = 'rgba(251, 191, 36, 0.4)';
+                ctx.shadowBlur = 4;
+                ctx.fill();
+
+                f.y += f.speed;
+                f.x += Math.sin(angle + f.density) * 0.5 + f.drift;
+
+                if (f.y > height + 10) {
+                    f.y = -10;
+                    f.x = Math.random() * width;
+                }
+                if (f.x > width + 10) f.x = -10;
+                else if (f.x < -10) f.x = width + 10;
+            }
+
+            snowAnimId = requestAnimationFrame(render);
+        }
+
+        render();
+
+        const toggleBtn = document.getElementById('snow-toggle');
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', () => {
+                snowActive = !snowActive;
+                const icon = document.getElementById('snow-icon');
+                if (icon) icon.textContent = snowActive ? '❄️' : '⏹️';
+                const label = toggleBtn.querySelector('[data-i18n="snowToggle"]');
+                if (label) {
+                    label.textContent = snowActive 
+                        ? (currentLang === 'es' ? 'Nieve: ON' : 'Neige : ON')
+                        : (currentLang === 'es' ? 'Nieve: OFF' : 'Neige : OFF');
+                }
+                if (snowActive) {
+                    render();
+                } else {
+                    ctx.clearRect(0, 0, width, height);
+                }
+            });
+        }
+    }
+
+    // 10. Initialisation Globale
     function init() {
         renderTimeline();
         initCountdown();
         initModal();
         initClipboard();
         initFilters();
+        initSnow();
 
         const langToggle = document.getElementById('lang-toggle');
         if (langToggle) {

@@ -1,9 +1,9 @@
 /* ==========================================================================
-   1. DESIGN TOKENS (STRICT LIGHTMODE LUXURY - NO DARKMODE)
+   1. DESIGN TOKENS (STRICT LIGHTMODE LUXURY - FESTIVE CHRISTMAS EDITION)
    ========================================================================== */
 :root {
     --bg-pure: #ffffff;
-    --bg-warm: #faf8f5;
+    --bg-warm: #faf6f0;
     --bg-slate: #f8fafc;
     --bg-card: #ffffff;
     --text-main: #0f172a;
@@ -13,13 +13,16 @@
     --border-gold: #e5dccb;
     --border-card: #f1ede6;
 
-    /* Festive Luxury Accents */
-    --accent-crimson: #991b1b;
+    /* Festive Christmas Luxury Accents */
+    --accent-crimson: #b91c1c;
     --accent-crimson-light: #fef2f2;
+    --accent-crimson-border: #fecaca;
     --accent-gold: #b45309;
     --accent-gold-light: #fffbeb;
+    --accent-gold-border: #fde68a;
     --accent-pine: #15803d;
     --accent-pine-light: #f0fdf4;
+    --accent-pine-border: #bbf7d0;
     --accent-blue: #1d4ed8;
     --accent-blue-light: #eff6ff;
 
@@ -28,16 +31,16 @@
     --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
     /* Shadows (Airy, clean light mode) */
-    --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
-    --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.06);
-    --shadow-lux: 0 16px 40px -8px rgba(15, 23, 42, 0.08);
+    --shadow-sm: 0 2px 10px rgba(15, 23, 42, 0.04);
+    --shadow-md: 0 10px 28px rgba(15, 23, 42, 0.06);
+    --shadow-lux: 0 18px 45px -8px rgba(180, 83, 9, 0.09);
     --radius-sm: 8px;
     --radius-md: 14px;
     --radius-lg: 22px;
 }
 
 /* ==========================================================================
-   2. BASE & RESET
+   2. BASE & FESTIVE CHRISTMAS BACKGROUND
    ========================================================================== */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -52,11 +55,22 @@ html {
 
 body {
     background-color: var(--bg-warm);
+    /* Festive Christmas Ambient Gradients + Subtle SVG Pattern Tile (Strict Lightmode) */
+    background-image:
+        radial-gradient(circle at 10% 8%, rgba(220, 38, 38, 0.05) 0%, transparent 35%),
+        radial-gradient(circle at 90% 12%, rgba(217, 119, 6, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 15% 45%, rgba(22, 101, 52, 0.045) 0%, transparent 35%),
+        radial-gradient(circle at 85% 65%, rgba(220, 38, 38, 0.05) 0%, transparent 35%),
+        radial-gradient(circle at 50% 90%, rgba(217, 119, 6, 0.05) 0%, transparent 45%),
+        url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23b45309' fill-opacity='0.08'%3E%3Cpath d='M60 10l1.5 4.5L66 16l-4.5 1.5L60 22l-1.5-4.5L54 16l4.5-1.5z'/%3E%3Ccircle cx='60' cy='16' r='1.2' fill='%23dc2626' fill-opacity='0.14'/%3E%3C/g%3E%3Cg fill='%2315803d' fill-opacity='0.065'%3E%3Cpath d='M18 70c3-3 8-2 10 2-3 3-8 2-10-2z'/%3E%3Cpath d='M22 66c3-3 8-2 10 2-3 3-8 2-10-2z'/%3E%3Ccircle cx='20' cy='69' r='1.5' fill='%23dc2626' fill-opacity='0.16'/%3E%3Ccircle cx='23' cy='72' r='1.5' fill='%23dc2626' fill-opacity='0.16'/%3E%3C/g%3E%3Cg fill='%230284c7' fill-opacity='0.07'%3E%3Cpath d='M100 85l-1-3 1-3 3 1 3-1-1 3 1 3-3-1z'/%3E%3C/g%3E%3Cg fill='%23b45309' fill-opacity='0.06'%3E%3Cpath d='M15 15l1 3 3 1-3 1-1 3-1-3-3-1 3-1z'/%3E%3Cpath d='M105 35l1 2 2 1-2 1-1 2-1-2-2-1 2-1z'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
     color: var(--text-main);
     font-family: var(--font-sans);
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    position: relative;
+    overflow-x: hidden;
 }
 
 h1, h2, h3, h4 {
@@ -86,17 +100,30 @@ a {
 }
 
 /* ==========================================================================
-   3. TOP NAVIGATION BAR
+   3. FALLING SNOW EFFECT (CANVAS)
+   ========================================================================== */
+.snow-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 99;
+}
+
+/* ==========================================================================
+   4. NAVBAR & CHRISTMAS FAIRY LIGHTS
    ========================================================================== */
 .navbar {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border-gold);
     position: sticky;
     top: 0;
-    z-index: 100;
-    padding: 12px 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+    z-index: 110;
+    padding: 12px 0 16px;
+    box-shadow: 0 4px 15px rgba(180, 83, 9, 0.05);
 }
 
 .nav-content {
@@ -119,7 +146,8 @@ a {
     font-weight: 700;
     padding: 4px 8px;
     border-radius: 6px;
-    border: 1px solid #fecaca;
+    border: 1px solid var(--accent-crimson-border);
+    box-shadow: 0 2px 6px rgba(185, 28, 28, 0.1);
 }
 
 .brand {
@@ -147,7 +175,7 @@ a {
 
 .nav-link:hover {
     color: var(--accent-crimson);
-    background: var(--bg-slate);
+    background: var(--accent-gold-light);
 }
 
 .nav-actions {
@@ -157,8 +185,8 @@ a {
 }
 
 .lang-switch {
-    background: var(--bg-slate);
-    border: 1px solid var(--border-subtle);
+    background: var(--bg-pure);
+    border: 1px solid var(--border-gold);
     padding: 8px 14px;
     border-radius: 30px;
     font-size: 0.9rem;
@@ -168,6 +196,7 @@ a {
     display: flex;
     align-items: center;
     gap: 4px;
+    box-shadow: var(--shadow-sm);
 }
 
 .lang-switch:hover {
@@ -185,18 +214,20 @@ a {
     align-items: center;
     gap: 6px;
     padding: 8px 16px;
-    border: 1px solid var(--border-subtle);
+    border: 1px solid var(--border-gold);
     border-radius: var(--radius-sm);
     background: var(--bg-pure);
     color: var(--text-main);
     font-size: 0.9rem;
     font-weight: 600;
     transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
 }
 
 .btn-outline:hover {
     border-color: var(--accent-crimson);
     color: var(--accent-crimson);
+    transform: translateY(-1px);
 }
 
 .btn-primary {
@@ -205,26 +236,92 @@ a {
     gap: 8px;
     padding: 10px 20px;
     border-radius: var(--radius-sm);
-    background: var(--accent-crimson);
+    background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
     color: #ffffff;
     font-size: 0.95rem;
     font-weight: 600;
-    box-shadow: 0 4px 12px rgba(153, 27, 27, 0.2);
+    box-shadow: 0 4px 14px rgba(185, 28, 28, 0.25);
     transition: all 0.2s ease;
 }
 
 .btn-primary:hover {
     background: #7f1d1d;
     transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(185, 28, 28, 0.35);
+}
+
+/* Christmas Fairy Lights Garland below Navbar */
+.xmas-lights-garland {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    right: 0;
+    height: 12px;
+    pointer-events: none;
+    z-index: 111;
+    overflow: hidden;
+}
+
+.xmas-light {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    position: relative;
+    animation: lightPulse 2.4s infinite ease-in-out;
+}
+
+.xmas-light.red {
+    background: #ef4444;
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.8), 0 0 14px rgba(239, 68, 68, 0.4);
+    animation-delay: 0s;
+}
+
+.xmas-light.gold {
+    background: #f59e0b;
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.8), 0 0 14px rgba(245, 158, 11, 0.4);
+    animation-delay: 0.5s;
+}
+
+.xmas-light.green {
+    background: #10b981;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.8), 0 0 14px rgba(16, 185, 129, 0.4);
+    animation-delay: 1.0s;
+}
+
+.xmas-light.blue {
+    background: #38bdf8;
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.8), 0 0 14px rgba(56, 189, 248, 0.4);
+    animation-delay: 1.5s;
+}
+
+.xmas-light.warm {
+    background: #fbbf24;
+    box-shadow: 0 0 8px rgba(251, 191, 36, 0.8), 0 0 14px rgba(251, 191, 36, 0.4);
+    animation-delay: 2.0s;
+}
+
+@keyframes lightPulse {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(0.85);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
 }
 
 /* ==========================================================================
-   4. HERO SECTION
+   5. HERO SECTION
    ========================================================================== */
 .hero {
-    padding: 48px 0 36px;
-    border-bottom: 1px solid var(--border-card);
-    background: linear-gradient(180deg, #ffffff 0%, var(--bg-warm) 100%);
+    padding: 52px 0 40px;
+    border-bottom: 1px solid var(--border-gold);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(254, 246, 240, 0.7) 100%);
+    position: relative;
 }
 
 .hero-grid {
@@ -240,23 +337,25 @@ a {
     gap: 8px;
     background: var(--accent-gold-light);
     color: var(--accent-gold);
-    border: 1px solid #fde68a;
+    border: 1px solid var(--accent-gold-border);
     padding: 6px 14px;
     border-radius: 30px;
     font-size: 0.9rem;
     font-weight: 700;
     margin-bottom: 16px;
+    box-shadow: 0 2px 6px rgba(180, 83, 9, 0.08);
 }
 
 .hero-dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--accent-gold);
+    background: var(--accent-crimson);
+    box-shadow: 0 0 6px rgba(185, 28, 28, 0.6);
 }
 
 .hero h1 {
-    font-size: 3.2rem;
+    font-size: 3.3rem;
     letter-spacing: -0.02em;
     color: var(--text-main);
     margin-bottom: 16px;
@@ -286,6 +385,12 @@ a {
     align-items: center;
     gap: 10px;
     box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.h-badge:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-gold);
 }
 
 .hb-icon {
@@ -334,7 +439,7 @@ a {
 
 .cd-item span {
     font-family: var(--font-serif);
-    font-size: 2.2rem;
+    font-size: 2.3rem;
     font-weight: 700;
     line-height: 1;
     color: var(--accent-crimson);
@@ -352,11 +457,11 @@ a {
 .cd-sep {
     font-family: var(--font-serif);
     font-size: 1.8rem;
-    color: var(--border-gold);
+    color: var(--accent-gold);
     font-weight: 600;
 }
 
-/* Visual Tilt Frame */
+/* Visual Tilt Frame with Holly Corner */
 .tilt-frame {
     position: relative;
     background: var(--bg-pure);
@@ -370,7 +475,18 @@ a {
 
 .tilt-frame:hover {
     transform: translateY(-4px) scale(1.01);
-    box-shadow: 0 20px 48px -10px rgba(15, 23, 42, 0.12);
+    box-shadow: 0 22px 52px -10px rgba(185, 28, 28, 0.15);
+}
+
+.xmas-holly-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 1.6rem;
+    z-index: 10;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.12));
+    user-select: none;
+    pointer-events: none;
 }
 
 .hero-img {
@@ -386,7 +502,7 @@ a {
     bottom: 24px;
     left: 24px;
     right: 24px;
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.94);
     backdrop-filter: blur(8px);
     padding: 8px 14px;
     border-radius: var(--radius-sm);
@@ -394,21 +510,49 @@ a {
     font-weight: 600;
     color: var(--accent-crimson);
     text-align: center;
-    border: 1px solid rgba(229, 220, 203, 0.8);
+    border: 1px solid rgba(229, 220, 203, 0.9);
+    box-shadow: var(--shadow-sm);
 }
 
 /* ==========================================================================
-   5. MAIN SECTIONS COMMON
+   6. FESTIVE SECTION DIVIDERS
+   ========================================================================== */
+.xmas-section-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 40px auto 0;
+    max-width: 680px;
+    user-select: none;
+}
+
+.xsd-line {
+    flex-grow: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-gold), transparent);
+}
+
+.xsd-decor {
+    font-size: 0.95rem;
+    letter-spacing: 0.2em;
+    color: var(--accent-gold);
+    opacity: 0.85;
+}
+
+/* ==========================================================================
+   7. MAIN SECTIONS COMMON
    ========================================================================== */
 .main-sections {
     display: flex;
     flex-direction: column;
-    gap: 72px;
-    padding: 56px 20px 80px;
+    gap: 64px;
+    padding: 40px 20px 80px;
 }
 
 .section-block {
     scroll-margin-top: 80px;
+    position: relative;
 }
 
 .section-header {
@@ -448,13 +592,13 @@ a {
     border-radius: 6px;
 }
 
-.tag-green { background: var(--accent-pine-light); color: var(--accent-pine); border: 1px solid #bbf7d0; }
-.tag-gold { background: var(--accent-gold-light); color: var(--accent-gold); border: 1px solid #fde68a; }
+.tag-green { background: var(--accent-pine-light); color: var(--accent-pine); border: 1px solid var(--accent-pine-border); }
+.tag-gold { background: var(--accent-gold-light); color: var(--accent-gold); border: 1px solid var(--accent-gold-border); }
 .tag-blue { background: var(--accent-blue-light); color: var(--accent-blue); border: 1px solid #bfdbfe; }
 .tag-purple { background: #faf5ff; color: #7e22ce; border: 1px solid #e9d5ff; }
 
 /* ==========================================================================
-   6. VUELOS & TRANSPORT SECTION
+   8. VUELOS & TRANSPORT SECTION
    ========================================================================== */
 .pnr-bar {
     background: var(--bg-pure);
@@ -509,6 +653,12 @@ a {
     display: flex;
     flex-direction: column;
     position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.flight-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lux);
 }
 
 .fc-header {
@@ -531,13 +681,13 @@ a {
 .fc-outbound {
     background: var(--accent-pine-light);
     color: var(--accent-pine);
-    border: 1px solid #bbf7d0;
+    border: 1px solid var(--accent-pine-border);
 }
 
 .fc-inbound {
     background: var(--accent-crimson-light);
     color: var(--accent-crimson);
-    border: 1px solid #fecaca;
+    border: 1px solid var(--accent-crimson-border);
 }
 
 .fc-date {
@@ -722,13 +872,13 @@ a {
     border-radius: 4px;
     background: var(--accent-pine-light);
     color: var(--accent-pine);
-    border: 1px solid #bbf7d0;
+    border: 1px solid var(--accent-pine-border);
 }
 
 .tc-badge-red {
     background: var(--accent-crimson-light);
     color: var(--accent-crimson);
-    border: 1px solid #fecaca;
+    border: 1px solid var(--accent-crimson-border);
 }
 
 .tc-company {
@@ -810,7 +960,7 @@ a {
 }
 
 /* ==========================================================================
-   7. ALOJAMIENTO CABANE SOUIRIÉ
+   9. ALOJAMIENTO CABANE SOUIRIÉ
    ========================================================================== */
 .luxury-card {
     background: var(--bg-pure);
@@ -818,6 +968,7 @@ a {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lux);
     overflow: hidden;
+    position: relative;
 }
 
 .acc-card-enhanced {
@@ -856,13 +1007,14 @@ a {
     position: absolute;
     bottom: 12px;
     left: 12px;
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.94);
     backdrop-filter: blur(6px);
     font-size: 0.8rem;
     font-weight: 700;
     padding: 4px 10px;
     border-radius: 4px;
     color: var(--accent-crimson);
+    border: 1px solid var(--border-gold);
 }
 
 .acc-thumbs {
@@ -983,7 +1135,7 @@ a {
 }
 
 /* ==========================================================================
-   8. MERCADOS DE NAVIDAD SECTION
+   10. MERCADOS DE NAVIDAD SECTION
    ========================================================================== */
 .markets-grid {
     display: grid;
@@ -999,11 +1151,13 @@ a {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .market-card:hover {
     transform: translateY(-4px);
+    box-shadow: var(--shadow-lux);
 }
 
 .mc-image-box {
@@ -1035,12 +1189,12 @@ a {
     padding: 6px 12px;
     border-radius: 20px;
     box-shadow: var(--shadow-sm);
-    border: 1px solid #bbf7d0;
+    border: 1px solid var(--accent-pine-border);
 }
 
 .mc-tag-gold {
     color: var(--accent-gold);
-    border-color: #fde68a;
+    border-color: var(--accent-gold-border);
 }
 
 .mc-content {
@@ -1115,7 +1269,7 @@ a {
 }
 
 /* ==========================================================================
-   9. TIMELINE ITINERARY
+   11. TIMELINE ITINERARY
    ========================================================================== */
 .timeline-filters {
     display: flex;
@@ -1133,13 +1287,14 @@ a {
     font-size: 0.95rem;
     font-weight: 600;
     transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
 }
 
 .filter-btn.active, .filter-btn:hover {
-    background: var(--accent-crimson);
+    background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
     color: #ffffff;
     border-color: var(--accent-crimson);
-    box-shadow: 0 4px 12px rgba(153, 27, 27, 0.2);
+    box-shadow: 0 4px 14px rgba(185, 28, 28, 0.25);
 }
 
 .timeline {
@@ -1156,7 +1311,7 @@ a {
     top: 8px;
     bottom: 8px;
     width: 2px;
-    background: var(--border-gold);
+    background: linear-gradient(180deg, var(--accent-crimson) 0%, var(--border-gold) 50%, var(--accent-pine) 100%);
 }
 
 .tl-item {
@@ -1167,11 +1322,12 @@ a {
     padding: 24px;
     margin-bottom: 24px;
     box-shadow: var(--shadow-sm);
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .tl-item:hover {
     transform: translateX(4px);
+    box-shadow: var(--shadow-md);
 }
 
 .tl-item::before {
@@ -1183,8 +1339,8 @@ a {
     height: 14px;
     border-radius: 50%;
     background: var(--accent-crimson);
-    border: 3px solid var(--bg-warm);
-    box-shadow: 0 0 0 2px var(--border-gold);
+    border: 3px solid var(--bg-pure);
+    box-shadow: 0 0 0 2px var(--accent-gold);
 }
 
 .tl-date {
@@ -1210,7 +1366,7 @@ a {
 }
 
 /* ==========================================================================
-   10. CONTACTS & ASISTENCIA
+   12. CONTACTS & ASISTENCIA
    ========================================================================== */
 .contacts-grid {
     display: grid;
@@ -1228,6 +1384,11 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-2px);
 }
 
 .contact-avatar {
@@ -1275,19 +1436,19 @@ a {
 
 .btn-call-emerg {
     background: var(--accent-crimson);
-    box-shadow: 0 4px 12px rgba(153, 27, 27, 0.2);
+    box-shadow: 0 4px 12px rgba(185, 28, 28, 0.25);
 }
 .btn-call-emerg:hover {
     background: #7f1d1d;
 }
 
 /* ==========================================================================
-   11. FOOTER & MODAL
+   13. FOOTER & MODAL
    ========================================================================== */
 .footer {
     text-align: center;
     padding: 48px 0;
-    background: var(--bg-pure);
+    background: rgba(255, 255, 255, 0.9);
     border-top: 1px solid var(--border-gold);
 }
 
@@ -1326,7 +1487,7 @@ a {
 .modal-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(250, 248, 245, 0.94);
+    background: rgba(250, 246, 240, 0.95);
     backdrop-filter: blur(8px);
 }
 
@@ -1397,7 +1558,7 @@ a {
 }
 
 /* ==========================================================================
-   12. RESPONSIVE DESIGN (PC & MOBILE ERGONOMICS)
+   14. RESPONSIVE DESIGN (PC & MOBILE ERGONOMICS)
    ========================================================================== */
 @media (max-width: 1024px) {
     .hero h1 { font-size: 2.8rem; }
@@ -1417,6 +1578,8 @@ a {
     .contacts-grid { grid-template-columns: 1fr; }
     .cred-grid { grid-template-columns: 1fr 1fr; }
     .section-header h2 { font-size: 2.2rem; }
+    .xmas-lights-garland { height: 8px; }
+    .xmas-light { width: 6px; height: 6px; }
 }
 
 @media (max-width: 540px) {
@@ -1432,15 +1595,16 @@ a {
 }
 
 /* ==========================================================================
-   13. CLEAN PRINT VERSION (@media print)
+   15. CLEAN PRINT VERSION (@media print)
    ========================================================================== */
 @media print {
     body {
         background: #ffffff !important;
+        background-image: none !important;
         color: #000000 !important;
         font-size: 11pt;
     }
-    .no-print {
+    .no-print, .snow-canvas, .xmas-lights-garland, .xmas-section-divider {
         display: none !important;
     }
     .hero {
